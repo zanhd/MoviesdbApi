@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MoviesdbApi</string>
+    <string name="movie_details">Movie Details</string>
 </resources>

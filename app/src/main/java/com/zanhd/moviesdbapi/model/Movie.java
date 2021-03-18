@@ -1,6 +1,8 @@
 package com.zanhd.moviesdbapi.model;
 
 public class Movie {
+
+    private static Movie instance = null;
     private boolean adult;
     private int id;
     private String langauge;
@@ -12,7 +14,14 @@ public class Movie {
     private int voteAverage;
 
     private String PosterPrefix = "https://image.tmdb.org/t/p/original";
-
+ //-----------------------------------------------------------------------------
+    public static void setInstance(Movie movie) {
+        instance = movie;
+    }
+    public static Movie getInstance() {
+        return instance;
+    }
+//-------------------------------------------------------------------------------
     public Movie() {}
 
     public boolean isAdult() {

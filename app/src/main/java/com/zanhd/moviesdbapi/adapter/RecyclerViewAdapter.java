@@ -1,15 +1,18 @@
 package com.zanhd.moviesdbapi.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
+import com.zanhd.moviesdbapi.MovieDetailsActivity;
 import com.zanhd.moviesdbapi.R;
 import com.zanhd.moviesdbapi.model.Movie;
 
@@ -33,7 +36,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int position) {
         Movie movie = movieList.get(position);
 
         String imageUrl = movie.getPosterPath();
@@ -42,6 +45,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 .placeholder(R.drawable.example_image)
                 .fit()
                 .into(viewHolder.imageView);
+
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Movie.setInstance(movieList.get(position));
+                context.startActivity(new Intent(context,MovieDetailsActivity.class));
+            }
+        });
     }
 
     @Override
@@ -55,5 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             imageView = itemView.findViewById(R.id.movie_row_imageView);
         }
+
     }
+
 }
